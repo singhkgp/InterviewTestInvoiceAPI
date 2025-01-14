@@ -1,0 +1,55 @@
+2025-01-14 15:53:55.609 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 15:53:55.788 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 15:55:50.792 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 15:55:50.827 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 15:56:15.418 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 15:56:15.451 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 16:00:29.133 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 16:00:29.164 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 16:14:23.625 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 16:14:23.699 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 17:15:20.027 +05:30 [INF] Token created: 
+2025-01-14 17:42:25.814 +05:30 [INF] Token created: 
+2025-01-14 17:45:21.939 +05:30 [INF] Token created: 
+2025-01-14 17:45:32.344 +05:30 [INF] IsTokenValid: True
+2025-01-14 17:45:54.848 +05:30 [INF] IsTokenValid: False
+2025-01-14 17:48:01.792 +05:30 [INF] Token created: 
+2025-01-14 17:48:25.442 +05:30 [INF] IsTokenValid: True
+2025-01-14 19:45:10.219 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - InterviewTestInvoiceAPI.Controllers.TestInvoiceController.IsTokenValid (InterviewTestInvoiceAPI). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-01-14 19:47:46.651 +05:30 [ERR] An unhandled exception has occurred while executing the request.
+Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - InterviewTestInvoiceAPI.Controllers.TestInvoiceController.IsTokenValid1 (InterviewTestInvoiceAPI). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperations(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePaths(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerDocumentWithoutFilters(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-01-14 19:50:59.201 +05:30 [INF] Token created: 
+2025-01-14 19:51:43.382 +05:30 [INF] IsTokenValid: True
+2025-01-14 19:51:51.631 +05:30 [INF] IsTokenValid: False
+2025-01-14 19:51:58.297 +05:30 [INF] IsTokenValid: True
+2025-01-14 19:56:24.798 +05:30 [INF] Token created: 
+2025-01-14 19:58:11.600 +05:30 [INF] Token created: 
+2025-01-14 19:58:14.832 +05:30 [INF] Token created: 
+2025-01-14 19:59:03.703 +05:30 [INF] Token created: 
+2025-01-14 19:59:10.290 +05:30 [INF] Token created: 
+2025-01-14 19:59:13.029 +05:30 [INF] Token created: 
+2025-01-14 20:22:30.695 +05:30 [INF] Token created: 
+2025-01-14 20:23:04.690 +05:30 [INF] IsTokenValid: True
+2025-01-14 20:28:05.435 +05:30 [INF] Token created: 
+2025-01-14 20:36:52.559 +05:30 [INF] Token created: 
+2025-01-14 20:37:40.003 +05:30 [INF] Token created: 
+2025-01-14 20:38:27.978 +05:30 [INF] Token created: 
+2025-01-14 20:39:23.448 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 20:39:23.480 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 20:42:42.287 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 20:42:42.323 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 20:43:34.824 +05:30 [WRN] No store type was specified for the decimal property 'UnitPrice' on entity type 'InvoiceItem'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-01-14 20:43:34.866 +05:30 [WRN] No store type was specified for the decimal property 'TotalAmount' on entity type 'TestInvoice'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.

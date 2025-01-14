@@ -3,6 +3,10 @@ using InterviewTestInvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace InterviewTestInvoiceAPI.Controllers
 {
@@ -13,10 +17,21 @@ namespace InterviewTestInvoiceAPI.Controllers
     {
         private readonly ILogger<TestInvoiceController> _logger;
         private readonly ITestInvoice _testInvoice;
-        public TestInvoiceController(ITestInvoice testInvoice, ILogger<TestInvoiceController> logger) 
+        private readonly IConfiguration _configuration;
+        public TestInvoiceController(ITestInvoice testInvoice, ILogger<TestInvoiceController> logger, IConfiguration configuration) 
         {
             _logger = logger;
-            _testInvoice = testInvoice; 
+            _testInvoice = testInvoice;
+            _configuration = configuration;
+        }
+
+        [HttpGet]
+        [Route("token")]
+        public IActionResult GetToken()
+        {
+            string token = GenerateToken();
+            _logger.LogInformation("Token created: ");
+            return Ok(new { Token = token });
         }
 
         [HttpGet]
@@ -73,6 +88,31 @@ namespace InterviewTestInvoiceAPI.Controllers
 
             _logger.LogInformation("DeleteInvoice: " + testInvoice.Id);
             return (IActionResult)testInvoice;
+        }
+
+        private string GenerateToken()
+        {
+            var key = _configuration["Authentication:SecretKey"];
+            var issuer = _configuration["Authentication:Issuer"];
+            var audience = _configuration["Authentication:Audience"];
+
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!.ToString()));
+            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, "singh"),
+                new Claim(ClaimTypes.Role, "Admin")
+            };
+            var token = new JwtSecurityToken(
+                issuer: issuer,
+                audience: audience,
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(15),
+                signingCredentials: credentials);
+
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+
         }
     }
 }

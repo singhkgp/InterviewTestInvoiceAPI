@@ -4,15 +4,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
 using System;
 using System.Text;
 using System.Threading.RateLimiting;
 
-
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -21,7 +19,9 @@ builder.Services.AddSwaggerGen();
 
 
 string secretKey = builder.Configuration["Authentication:SecretKey"]?.ToString() ?? "";
+var key = Encoding.UTF8.GetBytes(secretKey);
 string issuerName = builder.Configuration["Authentication:Issuer"]?.ToString() ?? "";
+string audienceName = builder.Configuration["Authentication:Audience"]?.ToString() ?? "";
 
 builder.Services.AddAuthentication(options =>
                                     {
@@ -32,12 +32,13 @@ builder.Services.AddAuthentication(options =>
                                     {
                                         options.TokenValidationParameters = new TokenValidationParameters
                                         {
-                                            ValidateIssuer = false, // Set true if you want to validate the issuer
-                                            ValidateAudience = false, // Set true if you want to validate the audience
+                                            ValidateIssuer = true, // Set true if you want to validate the issuer
+                                            ValidateAudience = true, // Set true if you want to validate the audience
                                             ValidateIssuerSigningKey = true,
-                                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+                                            IssuerSigningKey = new SymmetricSecurityKey(key),
                                             ValidateLifetime = true,
-                                            ValidIssuer = issuerName
+                                            ValidIssuer = issuerName,
+                                            ValidAudience = audienceName
                                         };
                                     });
 
@@ -57,7 +58,7 @@ builder.Services.AddRateLimiter(options =>
 
 var connectionString = builder.Configuration.GetConnectionString("TestInvoice");
 
-builder.Services.AddDbContext<TestDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<TestDbContext>(options => options.UseSqlServer(connectionString, options => options.EnableRetryOnFailure()));
 builder.Services.AddScoped<ITestInvoice, TestInvoiceRepository>();
 
 Log.Logger = new LoggerConfiguration()
