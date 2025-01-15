@@ -1,4 +1,5 @@
-﻿using InterviewTestInvoiceAPI.Models;
+﻿using InterviewTestInvoiceAPI.Authentications;
+using InterviewTestInvoiceAPI.Models;
 using InterviewTestInvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -92,26 +93,11 @@ namespace InterviewTestInvoiceAPI.Controllers
 
         private string GenerateToken()
         {
-            var key = _configuration["Authentication:SecretKey"];
-            var issuer = _configuration["Authentication:Issuer"];
-            var audience = _configuration["Authentication:Audience"];
+            var secretKey = _configuration["Authentication:SecretKey"]!.ToString();
+            var issuer = _configuration["Authentication:Issuer"]!.ToString();
+            var audience = _configuration["Authentication:Audience"]!.ToString();
 
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!.ToString()));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, "singh"),
-                new Claim(ClaimTypes.Role, "Admin")
-            };
-            var token = new JwtSecurityToken(
-                issuer: issuer,
-                audience: audience,
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(15),
-                signingCredentials: credentials);
-
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return AuthToken.GenerateToken(secretKey, issuer, audience);
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using InterviewTestInvoiceAPI.Repositories;
+﻿using InterviewTestInvoiceAPI.Authentications;
+using InterviewTestInvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -42,61 +43,20 @@ namespace InterviewTestInvoiceAPI.Controllers
 
         private string GenerateToken()
         {
-            var key = _configuration["Authentication:SecretKey"];
-            var issuer = _configuration["Authentication:Issuer"];
-            var audience = _configuration["Authentication:Audience"];
+            var secretKey = _configuration["Authentication:SecretKey"]!.ToString();
+            var issuer = _configuration["Authentication:Issuer"]!.ToString();
+            var audience = _configuration["Authentication:Audience"]!.ToString();
 
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!.ToString()));
-            var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, "singh"),
-                new Claim(ClaimTypes.Role, "Admin")
-            };
-            var token = new JwtSecurityToken(
-                issuer: issuer,
-                audience: audience,
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(15),
-                signingCredentials: credentials);
-
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-
+            return AuthToken.GenerateToken(secretKey, issuer, audience);
         }
 
         private bool IsTokenValid(string token)
         {
-            var secretKey = _configuration["Authentication:SecretKey"];
-            var issuer = _configuration["Authentication:Issuer"];
-            var audience = _configuration["Authentication:Audience"];
+            var secretKey = _configuration["Authentication:SecretKey"]!.ToString();
+            var issuer = _configuration["Authentication:Issuer"]!.ToString();
+            var audience = _configuration["Authentication:Audience"]!.ToString();
 
-            if (string.IsNullOrEmpty(token)) return false;
-
-            var key = Encoding.UTF8.GetBytes(secretKey!.ToString());
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var validationParameters = new TokenValidationParameters
-            {
-                ValidateIssuer = true,
-                ValidIssuer = issuer,
-                ValidateAudience = true,
-                ValidAudience = audience,
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateLifetime = true,
-                ClockSkew = TimeSpan.Zero
-            };
-
-            try
-            {
-                tokenHandler.ValidateToken(token, validationParameters, out SecurityToken _);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return AuthToken.IsTokenValid(token, secretKey, issuer, audience);
         }
     }
 }
