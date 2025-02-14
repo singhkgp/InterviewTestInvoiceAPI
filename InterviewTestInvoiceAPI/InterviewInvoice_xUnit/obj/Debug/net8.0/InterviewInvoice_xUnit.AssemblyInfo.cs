@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InterviewInvoice_xUnit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df87aed4130379c68e15c2357dae38aadf60da9b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a7446a09141f0750177d89ad67ec2dc351b7de1")]
 [assembly: System.Reflection.AssemblyProductAttribute("InterviewInvoice_xUnit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InterviewInvoice_xUnit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -56,9 +56,17 @@ builder.Services.AddRateLimiter(options =>
     });
 });
 
+//MS-SQL
 var connectionString = builder.Configuration.GetConnectionString("TestInvoice");
-
 builder.Services.AddDbContext<TestDbContext>(options => options.UseSqlServer(connectionString, options => options.EnableRetryOnFailure()));
+
+//COSMOS DB
+//var accountEndPoint = "https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+//var accountKey = "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+//var dbName = "InterviewInvoiceTest";
+//builder.Services.AddDbContext<CosmosDbContext>();
+
+
 builder.Services.AddScoped<ITestInvoice, TestInvoiceRepository>();
 
 Log.Logger = new LoggerConfiguration()

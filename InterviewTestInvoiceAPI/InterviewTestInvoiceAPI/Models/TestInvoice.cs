@@ -13,11 +13,14 @@ namespace InterviewTestInvoiceAPI.Models
         public DateTime UpdateOn { get; set; }
     }
 
+    //rahul.kumar31@globallogic.com
 
     public class InvoiceItem
     {
         public int Id { get; set; }
         public string? Description { get; set; }
+
+        [Range(1, int.MaxValue)]
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal Total => Quantity * UnitPrice;

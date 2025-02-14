@@ -7,6 +7,7 @@ namespace InterviewTestInvoiceAPI.Repositories
         Task<IEnumerable<TestInvoice>> GetInvoicesAsync();
         Task<TestInvoice> GetInvoiceByIdAsync(Guid? id);
         Task CreateInvoiceAsync(TestInvoice invoice);
+        Task CreateInvoiceAsync2(TestInvoice invoice);
         Task UpdateInvoiceAsync(TestInvoice invoice);
         Task DeleteInvoiceAsync(Guid id);
     }

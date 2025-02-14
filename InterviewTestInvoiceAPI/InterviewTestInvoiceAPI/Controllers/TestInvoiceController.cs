@@ -3,6 +3,7 @@ using InterviewTestInvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,7 +13,7 @@ namespace InterviewTestInvoiceAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class TestInvoiceController : ControllerBase
     {
         private readonly ILogger<TestInvoiceController> _logger;
@@ -53,13 +54,25 @@ namespace InterviewTestInvoiceAPI.Controllers
             return Ok(testInvoice);
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> CreateInvoice([FromBody] TestInvoice testInvoice)
+        //{
+        //    testInvoice.Id = Guid.NewGuid();
+        //    testInvoice.CreateOn = DateTime.UtcNow;
+        //    testInvoice.UpdateOn = DateTime.UtcNow;
+        //    await _testInvoice.CreateInvoiceAsync(testInvoice);
+
+        //    _logger.LogInformation("CreateInvoice: " + testInvoice.Id);
+        //    return Ok(testInvoice);
+        //}
+
         [HttpPost]
         public async Task<IActionResult> CreateInvoice([FromBody] TestInvoice testInvoice)
         {
             testInvoice.Id = Guid.NewGuid();
             testInvoice.CreateOn = DateTime.UtcNow;
             testInvoice.UpdateOn = DateTime.UtcNow;
-            await _testInvoice.CreateInvoiceAsync(testInvoice);
+            await _testInvoice.CreateInvoiceAsync2(testInvoice);
 
             _logger.LogInformation("CreateInvoice: " + testInvoice.Id);
             return Ok(testInvoice);
@@ -86,8 +99,9 @@ namespace InterviewTestInvoiceAPI.Controllers
             if (testInvoice == null)
                 return NotFound();
 
+            await _testInvoice.DeleteInvoiceAsync(id);
             _logger.LogInformation("DeleteInvoice: " + testInvoice.Id);
-            return (IActionResult)testInvoice;
+            return Ok(testInvoice);
         }
 
         private string GenerateToken()
